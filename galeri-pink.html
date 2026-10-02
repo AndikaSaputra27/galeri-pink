@@ -428,26 +428,26 @@
 </div>
 
 <!-- PASSWORD MODAL -->
-<div class="modal-backdrop" id="pwModal">
-  <div class="modal" style="max-width:360px">
+<div class="modal-backdrop" id="pwModal" onclick="event.stopPropagation()">
+  <div class="modal" style="max-width:360px" onclick="event.stopPropagation()">
     <div class="modal-lock-icon">🔐</div>
     <h3 style="text-align:center">Owner Access</h3>
     <p class="modal-sub" style="text-align:center">Enter the password to edit this photo's details</p>
     <div class="form-group">
       <label>PASSWORD</label>
-      <input type="password" id="pwInput" placeholder="Enter password…" onkeydown="if(event.key==='Enter')checkPassword()"/>
+      <input type="password" id="pwInput" placeholder="Enter password…" onkeydown="if(event.key==='Enter'){event.preventDefault();checkPassword()}" onclick="event.stopPropagation()"/>
       <span class="password-hint" id="pwError"></span>
     </div>
     <div class="modal-actions">
-      <button class="btn-modal-save"   onclick="checkPassword()">Unlock ✨</button>
-      <button class="btn-modal-cancel" onclick="closePwModal()">Cancel</button>
+      <button class="btn-modal-save"   onclick="event.stopPropagation();checkPassword()">Unlock ✨</button>
+      <button class="btn-modal-cancel" onclick="event.stopPropagation();closePwModal()">Cancel</button>
     </div>
   </div>
 </div>
 
 <!-- EDIT METADATA MODAL -->
-<div class="modal-backdrop" id="editModal">
-  <div class="modal">
+<div class="modal-backdrop" id="editModal" onclick="event.stopPropagation()">
+  <div class="modal" onclick="event.stopPropagation()">
     <h3 id="editModalTitle">Edit Photo Details</h3>
     <p class="modal-sub" id="editModalSub">Photo 1</p>
 
@@ -477,8 +477,8 @@
     </div>
 
     <div class="modal-actions">
-      <button class="btn-modal-save"   onclick="saveMeta()">Save 💾</button>
-      <button class="btn-modal-cancel" onclick="closeEditModal()">Cancel</button>
+      <button class="btn-modal-save"   onclick="event.stopPropagation();saveMeta()">Save 💾</button>
+      <button class="btn-modal-cancel" onclick="event.stopPropagation();closeEditModal()">Cancel</button>
     </div>
   </div>
 </div>
