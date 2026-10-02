@@ -697,7 +697,7 @@ function closePwModal() {
 }
 
 function checkPassword() {
-  const val = document.getElementById('pwInput').value;
+  const val = document.getElementById('pwInput').value.trim();
   if (val === OWNER_PASSWORD) {
     closePwModal();
     openEditModal(pendingEditIndex);
