@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galeri Foto Elegan 🌸</title>
+  <title>Adik's Gallery 🌸</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
 
@@ -438,9 +438,9 @@
 
 <!-- Header -->
 <header>
-  <div class="header-badge">✦ Galeri Foto ✦</div>
-  <h1>Kenangan <span>Indah</span> Kita</h1>
-  <p>Kumpulan momen berharga yang tak terlupakan</p>
+  <div class="header-badge">✦ Photo Gallery ✦</div>
+  <h1>Adik's <span>Gallery</span></h1>
+  <p>A collection of precious moments never to be forgotten</p>
   <div class="divider"></div>
 </header>
 
@@ -454,12 +454,12 @@
 
   <!-- Share Section -->
   <div class="share-section">
-    <h2>🌸 Bagikan Galeri Ini</h2>
-    <p>Simpan & bagikan momen indah ini kepada semua orang</p>
+    <h2>🌸 Share This Gallery</h2>
+    <p>Save & share these beautiful moments with everyone</p>
 
     <div class="share-buttons">
       <button class="btn-share btn-copy" onclick="copyLink()">
-        🔗 Salin Link
+        🔗 Copy Link
       </button>
       <button class="btn-share btn-wa" onclick="shareWhatsApp()">
         💬 WhatsApp
@@ -468,13 +468,13 @@
         📸 Instagram
       </button>
       <button class="btn-share btn-download" onclick="downloadPage()">
-        ⬇️ Unduh Halaman
+        ⬇️ Download Page
       </button>
     </div>
 
     <div class="url-box">
-      <input class="url-input" id="pageUrl" type="text" readonly placeholder="URL halaman ini…" />
-      <button class="btn-share btn-copy" style="padding:11px 20px;flex-shrink:0;font-size:0.8rem" onclick="copyLink()">Salin</button>
+      <input class="url-input" id="pageUrl" type="text" readonly placeholder="Page URL…" />
+      <button class="btn-share btn-copy" style="padding:11px 20px;flex-shrink:0;font-size:0.8rem" onclick="copyLink()">Copy</button>
     </div>
   </div>
 
@@ -482,7 +482,7 @@
 
 <!-- Footer -->
 <footer>
-  🌸 Dibuat dengan cinta — Galeri Foto Elegan 🌸
+  🌸 Made with love — Adik's Gallery 🌸
 </footer>
 
 <!-- Lightbox -->
@@ -507,10 +507,10 @@
   images = images.slice(0, TOTAL_SLOTS);
 
   const LABELS = [
-    'Foto 1',  'Foto 2',  'Foto 3',  'Foto 4',  'Foto 5',
-    'Foto 6',  'Foto 7',  'Foto 8',  'Foto 9',  'Foto 10',
-    'Foto 11', 'Foto 12', 'Foto 13', 'Foto 14', 'Foto 15',
-    'Foto 16', 'Foto 17'
+    'Photo 1',  'Photo 2',  'Photo 3',  'Photo 4',  'Photo 5',
+    'Photo 6',  'Photo 7',  'Photo 8',  'Photo 9',  'Photo 10',
+    'Photo 11', 'Photo 12', 'Photo 13', 'Photo 14', 'Photo 15',
+    'Photo 16', 'Photo 17'
   ];
 
   function saveImages() {
@@ -540,8 +540,8 @@
         overlay.className = 'card-overlay';
         overlay.innerHTML = `
           <div class="overlay-action">
-            <button class="btn-small btn-view" onclick="openLightbox(${i})">🔍 Lihat</button>
-            <button class="btn-small btn-remove" onclick="removeImage(${i})">🗑 Hapus</button>
+            <button class="btn-small btn-view" onclick="openLightbox(${i})">🔍 View</button>
+            <button class="btn-small btn-remove" onclick="removeImage(${i})">🗑 Remove</button>
           </div>`;
 
         card.appendChild(num);
@@ -563,7 +563,7 @@
         uploadArea.innerHTML = `
           <div class="upload-icon">🌸</div>
           <div class="upload-label">${LABELS[i]}</div>
-          <div class="upload-sub">Klik untuk memilih foto</div>`;
+          <div class="upload-sub">Click to choose a photo</div>`;
 
         card.appendChild(num);
         card.appendChild(fileInput);
@@ -582,7 +582,7 @@
       images[index] = e.target.result;
       saveImages();
       renderGallery();
-      showToast('🌸 Foto berhasil diunggah!');
+      showToast('🌸 Photo uploaded successfully!');
     };
     reader.readAsDataURL(file);
   }
@@ -591,7 +591,7 @@
     images[index] = null;
     saveImages();
     renderGallery();
-    showToast('Foto dihapus.');
+    showToast('Photo removed.');
   }
 
   /* ─────────────────────────────────────────
@@ -623,34 +623,34 @@
   function copyLink() {
     const url = getPageUrl();
     navigator.clipboard.writeText(url).then(() => {
-      showToast('🔗 Link berhasil disalin!');
+      showToast('🔗 Link copied!');
     }).catch(() => {
       // Fallback
       const inp = document.getElementById('pageUrl');
       inp.select();
       document.execCommand('copy');
-      showToast('🔗 Link berhasil disalin!');
+      showToast('🔗 Link copied!');
     });
   }
 
   function shareWhatsApp() {
     const url = encodeURIComponent(getPageUrl());
-    const text = encodeURIComponent('🌸 Lihat galeri foto elegan ini! ');
+    const text = encodeURIComponent('🌸 Check out this elegant photo gallery! ');
     window.open(`https://wa.me/?text=${text}${url}`, '_blank');
   }
 
   function shareInstagram() {
     copyLink();
-    showToast('📸 Link disalin — tempel di bio Instagram kamu!');
+    showToast('📸 Link copied — paste it in your Instagram bio or story!');
   }
 
   function downloadPage() {
     const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'galeri-foto-elegan.html';
+    a.download = 'adiks-gallery.html';
     a.click();
-    showToast('⬇️ Halaman berhasil diunduh!');
+    showToast('⬇️ Page downloaded successfully!');
   }
 
   /* ─────────────────────────────────────────
