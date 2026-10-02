@@ -500,15 +500,17 @@
   /* ─────────────────────────────────────────
      GALLERY DATA — saved to localStorage
   ───────────────────────────────────────── */
-  const TOTAL_SLOTS = 6;
+  const TOTAL_SLOTS = 17;
   let images = JSON.parse(localStorage.getItem('gallery_images') || '[]');
   // Ensure array length = TOTAL_SLOTS
   while (images.length < TOTAL_SLOTS) images.push(null);
   images = images.slice(0, TOTAL_SLOTS);
 
   const LABELS = [
-    'Foto 1', 'Foto 2', 'Foto 3',
-    'Foto 4', 'Foto 5', 'Foto 6'
+    'Foto 1',  'Foto 2',  'Foto 3',  'Foto 4',  'Foto 5',
+    'Foto 6',  'Foto 7',  'Foto 8',  'Foto 9',  'Foto 10',
+    'Foto 11', 'Foto 12', 'Foto 13', 'Foto 14', 'Foto 15',
+    'Foto 16', 'Foto 17'
   ];
 
   function saveImages() {
@@ -525,7 +527,7 @@
 
       const num = document.createElement('span');
       num.className = 'card-number';
-      num.textContent = `0${i + 1}`;
+      num.textContent = (i + 1) < 10 ? `0${i + 1}` : `${i + 1}`;
 
       if (src) {
         // Image loaded
