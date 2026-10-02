@@ -429,24 +429,6 @@
   </div>
 </div>
 
-<!-- PASSWORD MODAL -->
-<div class="modal-backdrop" id="pwModal">
-  <div class="modal" id="pwModalBox" style="max-width:360px">
-    <div class="modal-lock-icon">🔐</div>
-    <h3 style="text-align:center">Owner Access</h3>
-    <p class="modal-sub" style="text-align:center">Enter the password to edit this photo's details</p>
-    <div class="form-group">
-      <label>PASSWORD</label>
-      <input type="password" id="pwInput" placeholder="Enter password…"/>
-      <span class="password-hint" id="pwError"></span>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-modal-save"   id="btnUnlock">Unlock ✨</button>
-      <button class="btn-modal-cancel" id="btnPwCancel">Cancel</button>
-    </div>
-  </div>
-</div>
-
 <!-- EDIT METADATA MODAL -->
 <div class="modal-backdrop" id="editModal">
   <div class="modal" id="editModalBox">
@@ -493,7 +475,6 @@
    CONFIG
 ═══════════════════════════════════════ */
 const TOTAL_SLOTS = 17;
-const OWNER_PASSWORD = 'adik1727'; // ← ganti password sesuai keinginan
 
 /* ═══════════════════════════════════════
    STATE
@@ -610,7 +591,7 @@ function renderGallery() {
     const editBtn = document.createElement('button');
     editBtn.className   = 'btn-edit-meta';
     editBtn.textContent = '✏️ Edit Details';
-    editBtn.onclick = (e) => { e.stopPropagation(); openPwModal(i); };
+    editBtn.onclick = (e) => { e.stopPropagation(); openEditModal(i); };
     panel.appendChild(editBtn);
 
     card.appendChild(panel);
@@ -675,71 +656,32 @@ function lightboxNav(dir) {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape')     { closeLightbox(); closePwModal(); closeEditModal(); }
+  if (e.key === 'Escape')     { closeLightbox(); closeEditModal(); }
   if (e.key === 'ArrowRight') lightboxNav(+1);
   if (e.key === 'ArrowLeft')  lightboxNav(-1);
 });
-
-/* ═══════════════════════════════════════
-   PASSWORD MODAL
-═══════════════════════════════════════ */
-let pendingEditIndex = -1;
-
-// Close modal only when clicking the dark backdrop (not the modal box itself)
-document.getElementById('pwModal').addEventListener('click', function(e) {
-  if (e.target === this) closePwModal();
-});
-document.getElementById('editModal').addEventListener('click', function(e) {
-  if (e.target === this) closeEditModal();
-});
-
-// Wire up buttons via JS (no inline onclick)
-document.getElementById('btnUnlock').addEventListener('click', checkPassword);
-document.getElementById('btnPwCancel').addEventListener('click', closePwModal);
-document.getElementById('btnSaveMeta').addEventListener('click', saveMeta);
-document.getElementById('btnEditCancel').addEventListener('click', closeEditModal);
-document.getElementById('pwInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') { e.preventDefault(); checkPassword(); }
-});
-
-// Star picker via JS
-document.querySelectorAll('.star-pick').forEach(el => {
-  el.addEventListener('click', function(e) {
-    e.stopPropagation();
-    pickStar(parseInt(this.dataset.v));
-  });
-});
-
-function openPwModal(index) {
-  pendingEditIndex = index;
-  document.getElementById('pwInput').value = '';
-  document.getElementById('pwError').textContent = '';
-  document.getElementById('pwModal').classList.add('active');
-  setTimeout(() => document.getElementById('pwInput').focus(), 150);
-}
-
-function closePwModal() {
-  document.getElementById('pwModal').classList.remove('active');
-}
-
-function checkPassword() {
-  const val = document.getElementById('pwInput').value.trim();
-  if (val === OWNER_PASSWORD) {
-    document.getElementById('pwModal').classList.remove('active');
-    // small delay so first modal fully hides before second opens
-    setTimeout(() => openEditModal(pendingEditIndex), 120);
-  } else {
-    document.getElementById('pwError').textContent = '❌ Wrong password. Try again.';
-    document.getElementById('pwInput').value = '';
-    document.getElementById('pwInput').focus();
-  }
-}
 
 /* ═══════════════════════════════════════
    EDIT METADATA MODAL
 ═══════════════════════════════════════ */
 let editingIndex = -1;
 let pickedStars  = 0;
+
+// Close when clicking dark backdrop
+document.getElementById('editModal').addEventListener('click', function(e) {
+  if (e.target === this) closeEditModal();
+});
+
+// Wire up buttons
+document.getElementById('btnSaveMeta').addEventListener('click', saveMeta);
+document.getElementById('btnEditCancel').addEventListener('click', closeEditModal);
+
+// Star picker
+document.querySelectorAll('.star-pick').forEach(el => {
+  el.addEventListener('click', function() {
+    pickStar(parseInt(this.dataset.v));
+  });
+});
 
 function openEditModal(index) {
   editingIndex = index;
@@ -755,6 +697,7 @@ function openEditModal(index) {
   renderStarPicker();
 
   document.getElementById('editModal').classList.add('active');
+  setTimeout(() => document.getElementById('fieldDate').focus(), 100);
 }
 
 function closeEditModal() {
