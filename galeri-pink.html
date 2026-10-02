@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,434 +9,384 @@
 
     :root {
       --pink-light: #fce4ec;
-      --pink-mid: #f48fb1;
-      --pink-dark: #e91e8c;
-      --pink-rose: #f06292;
+      --pink-mid:   #f48fb1;
+      --pink-dark:  #e91e8c;
+      --pink-rose:  #f06292;
       --pink-blush: #ffd6e7;
-      --gold: #c9a96e;
-      --white: #fff;
+      --gold:       #c9a96e;
+      --gold2:      #e0c080;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #ffd6e7 60%, #fce4ec 100%);
+      background: linear-gradient(135deg,#fce4ec 0%,#f8bbd0 30%,#ffd6e7 60%,#fce4ec 100%);
       font-family: 'Lato', sans-serif;
       overflow-x: hidden;
     }
 
-    /* ── CONFETTI CANVAS ── */
+    /* ── CONFETTI ── */
     #confetti-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
+      position:fixed; inset:0;
+      pointer-events:none; z-index:0;
     }
 
     /* ── HEADER ── */
     header {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 60px 20px 30px;
+      position:relative; z-index:10;
+      text-align:center; padding:60px 20px 30px;
     }
-
     .header-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.6);
-      border: 1px solid var(--pink-mid);
-      border-radius: 50px;
-      padding: 6px 22px;
-      font-size: 0.78rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--pink-dark);
-      margin-bottom: 16px;
-      backdrop-filter: blur(10px);
+      display:inline-block;
+      background:rgba(255,255,255,.6);
+      border:1px solid var(--pink-mid);
+      border-radius:50px; padding:6px 22px;
+      font-size:.78rem; letter-spacing:3px;
+      text-transform:uppercase; color:var(--pink-dark);
+      margin-bottom:16px; backdrop-filter:blur(10px);
     }
-
     header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 6vw, 3.8rem);
-      color: #b5175e;
-      text-shadow: 0 2px 12px rgba(233,30,140,0.15);
-      margin-bottom: 10px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,6vw,3.8rem);
+      color:#b5175e;
+      text-shadow:0 2px 12px rgba(233,30,140,.15);
+      margin-bottom:10px;
     }
-
-    header h1 span {
-      font-style: italic;
-      color: var(--pink-rose);
-    }
-
-    header p {
-      font-size: 1rem;
-      color: #c2698f;
-      font-weight: 300;
-      letter-spacing: 1px;
-    }
-
+    header h1 span { font-style:italic; color:var(--pink-rose); }
+    header p { font-size:1rem; color:#c2698f; font-weight:300; letter-spacing:1px; }
     .divider {
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--pink-mid), transparent);
-      margin: 18px auto 0;
+      width:80px; height:2px;
+      background:linear-gradient(to right,transparent,var(--pink-mid),transparent);
+      margin:18px auto 0;
     }
 
-    /* ── MAIN CONTAINER ── */
+    /* ── CONTAINER ── */
     .container {
-      position: relative;
-      z-index: 10;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 20px 60px;
+      position:relative; z-index:10;
+      max-width:1160px; margin:0 auto;
+      padding:20px 20px 60px;
     }
 
     /* ── GRID ── */
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-bottom: 40px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px; margin-bottom:40px;
     }
-
-    @media (max-width: 768px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    }
-    @media (max-width: 480px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-    }
+    @media(max-width:860px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); gap:18px; } }
+    @media(max-width:520px){ .gallery-grid{ grid-template-columns:1fr; } }
 
     /* ── CARD ── */
     .card {
-      position: relative;
-      background: rgba(255,255,255,0.75);
-      border: 1.5px solid rgba(244,143,177,0.4);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(233,30,140,0.10), 0 2px 8px rgba(0,0,0,0.06);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-      backdrop-filter: blur(8px);
-      aspect-ratio: 4/3;
-      cursor: pointer;
+      position:relative;
+      background:rgba(255,255,255,.82);
+      border:1.5px solid rgba(244,143,177,.4);
+      border-radius:22px; overflow:hidden;
+      box-shadow:0 8px 32px rgba(233,30,140,.10),0 2px 8px rgba(0,0,0,.06);
+      transition:transform .35s,box-shadow .35s;
+      backdrop-filter:blur(8px);
+      display:flex; flex-direction:column;
+    }
+    .card:hover {
+      transform:translateY(-6px) scale(1.015);
+      box-shadow:0 22px 54px rgba(233,30,140,.20),0 6px 20px rgba(0,0,0,.10);
     }
 
-    .card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 20px 50px rgba(233,30,140,0.20), 0 6px 20px rgba(0,0,0,0.10);
+    /* Photo wrapper */
+    .card-photo {
+      position:relative;
+      aspect-ratio:4/3;
+      overflow:hidden;
+      cursor:pointer;
+      flex-shrink:0;
     }
 
     .card-number {
-      position: absolute;
-      top: 12px; left: 14px;
-      background: rgba(255,255,255,0.85);
-      color: var(--pink-dark);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      z-index: 5;
-      border: 1px solid rgba(244,143,177,0.5);
+      position:absolute; top:12px; left:14px;
+      background:rgba(255,255,255,.88);
+      color:var(--pink-dark);
+      font-size:.72rem; font-weight:700;
+      letter-spacing:1.5px; padding:3px 10px;
+      border-radius:20px; z-index:5;
+      border:1px solid rgba(244,143,177,.5);
     }
 
     /* Upload placeholder */
     .upload-area {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: linear-gradient(145deg, rgba(252,228,236,0.8), rgba(255,214,231,0.8));
-      transition: background 0.3s;
+      width:100%; height:100%;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:10px;
+      background:linear-gradient(145deg,rgba(252,228,236,.8),rgba(255,214,231,.8));
+      transition:background .3s; cursor:pointer;
     }
+    .upload-area:hover { background:linear-gradient(145deg,rgba(244,143,177,.25),rgba(252,228,236,.9)); }
+    .upload-icon  { font-size:2.4rem; line-height:1; }
+    .upload-label { font-size:.82rem; color:#c2698f; font-weight:600; text-align:center; padding:0 10px; }
+    .upload-sub   { font-size:.70rem; color:#e091b2; }
+    .file-input   { display:none; }
 
-    .upload-area:hover { background: linear-gradient(145deg, rgba(244,143,177,0.25), rgba(252,228,236,0.9)); }
-
-    .upload-icon {
-      font-size: 2.4rem;
-      line-height: 1;
-    }
-
-    .upload-label {
-      font-size: 0.82rem;
-      color: #c2698f;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-align: center;
-      padding: 0 10px;
-    }
-
-    .upload-sub {
-      font-size: 0.70rem;
-      color: #e091b2;
-      letter-spacing: 0.3px;
-    }
-
-    /* Hidden file input */
-    .file-input {
-      display: none;
-    }
-
-    /* Uploaded image */
+    /* Photo */
     .card-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
+      width:100%; height:100%;
+      object-fit:cover; display:block;
+      transition:transform .4s;
     }
+    .card-photo:hover .card-img { transform:scale(1.06); }
 
-    .card:hover .card-img { transform: scale(1.06); }
-
-    /* Overlay on hover */
+    /* Hover overlay (view / remove) */
     .card-overlay {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(181,23,94,0.75) 0%, transparent 100%);
-      padding: 20px 16px 14px;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 4;
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(to top,rgba(181,23,94,.75) 0%,transparent 100%);
+      padding:20px 14px 12px;
+      opacity:0; transform:translateY(6px);
+      transition:opacity .3s,transform .3s; z-index:4;
     }
-
-    .card:hover .card-overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .overlay-action {
-      display: flex;
-      gap: 10px;
-    }
-
+    .card-photo:hover .card-overlay { opacity:1; transform:translateY(0); }
+    .overlay-action { display:flex; gap:8px; }
     .btn-small {
-      flex: 1;
-      padding: 7px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
+      flex:1; padding:7px 0; border:none; border-radius:10px;
+      font-size:.73rem; font-weight:700; cursor:pointer;
+      transition:transform .2s,opacity .2s;
+    }
+    .btn-small:hover { opacity:.88; transform:scale(.97); }
+    .btn-view   { background:rgba(255,255,255,.9); color:#b5175e; }
+    .btn-remove { background:rgba(233,30,140,.85); color:#fff; }
+
+    /* ── METADATA PANEL ── */
+    .card-meta {
+      padding:14px 16px 16px;
+      border-top:1px solid rgba(244,143,177,.25);
+      display:flex; flex-direction:column; gap:8px;
+      flex:1;
     }
 
-    .btn-small:hover { opacity: 0.88; transform: scale(0.97); }
-
-    .btn-view {
-      background: rgba(255,255,255,0.9);
-      color: #b5175e;
+    .meta-date {
+      font-family:'Playfair Display',serif;
+      font-size:.82rem; color:#b5175e;
+      font-weight:700; letter-spacing:.4px;
     }
+    .meta-date.empty { color:#d4a0b8; font-style:italic; font-weight:400; }
 
-    .btn-remove {
-      background: rgba(233,30,140,0.85);
-      color: white;
+    .meta-location {
+      display:flex; align-items:center; gap:5px;
+      font-size:.76rem; color:#c2698f; font-weight:600;
     }
+    .meta-location.empty { color:#d4a0b8; font-style:italic; font-weight:400; }
+
+    .meta-history {
+      font-size:.74rem; color:#a06080; line-height:1.55;
+      display:-webkit-box; -webkit-line-clamp:3;
+      -webkit-box-orient:vertical; overflow:hidden;
+    }
+    .meta-history.empty { color:#d4a0b8; font-style:italic; }
+
+    /* Stars row */
+    .meta-stars {
+      display:flex; align-items:center; gap:3px;
+      margin-top:2px;
+    }
+    .star {
+      font-size:1.05rem;
+      color:#e0c0cc;
+      transition:color .15s, transform .15s;
+      line-height:1;
+    }
+    .star.filled { color:var(--gold); }
+
+    /* Edit button */
+    .btn-edit-meta {
+      align-self:flex-start;
+      margin-top:4px;
+      padding:5px 14px;
+      border:1.5px solid rgba(233,30,140,.35);
+      border-radius:50px;
+      background:rgba(255,255,255,.7);
+      color:var(--pink-dark);
+      font-size:.70rem; font-weight:700;
+      cursor:pointer; letter-spacing:.5px;
+      transition:background .2s, border-color .2s;
+    }
+    .btn-edit-meta:hover { background:rgba(244,143,177,.2); border-color:var(--pink-dark); }
 
     /* ── SHARE SECTION ── */
     .share-section {
-      background: rgba(255,255,255,0.65);
-      border: 1.5px solid rgba(244,143,177,0.5);
-      border-radius: 24px;
-      padding: 36px 40px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(233,30,140,0.10);
+      background:rgba(255,255,255,.65);
+      border:1.5px solid rgba(244,143,177,.5);
+      border-radius:24px; padding:36px 40px;
+      text-align:center; backdrop-filter:blur(12px);
+      box-shadow:0 8px 32px rgba(233,30,140,.10);
     }
-
     .share-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: #b5175e;
-      margin-bottom: 8px;
+      font-family:'Playfair Display',serif;
+      font-size:1.6rem; color:#b5175e; margin-bottom:8px;
     }
-
-    .share-section p {
-      color: #c2698f;
-      font-size: 0.88rem;
-      margin-bottom: 24px;
-    }
-
-    .share-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-      margin-bottom: 28px;
-    }
-
+    .share-section > p { color:#c2698f; font-size:.88rem; margin-bottom:24px; }
+    .share-buttons { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:28px; }
     .btn-share {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 26px;
-      border: none;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.25s, box-shadow 0.25s;
-      letter-spacing: 0.4px;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 26px; border:none; border-radius:50px;
+      font-size:.88rem; font-weight:700; cursor:pointer;
+      transition:transform .25s,box-shadow .25s; letter-spacing:.4px;
     }
-
-    .btn-share:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(233,30,140,0.30);
-    }
-
-    .btn-copy {
-      background: linear-gradient(135deg, #f48fb1, #e91e8c);
-      color: white;
-    }
-
-    .btn-wa {
-      background: #25D366;
-      color: white;
-    }
-
-    .btn-ig {
-      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: white;
-    }
-
-    .btn-download {
-      background: linear-gradient(135deg, #c9a96e, #e0c080);
-      color: white;
-    }
-
-    /* URL input */
-    .url-box {
-      display: flex;
-      gap: 10px;
-      max-width: 520px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
+    .btn-share:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(233,30,140,.30); }
+    .btn-copy     { background:linear-gradient(135deg,#f48fb1,#e91e8c); color:#fff; }
+    .btn-wa       { background:#25D366; color:#fff; }
+    .btn-ig       { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; }
+    .btn-download { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#fff; }
+    .url-box { display:flex; gap:10px; max-width:520px; margin:0 auto; align-items:center; }
     .url-input {
-      flex: 1;
-      padding: 12px 18px;
-      border: 1.5px solid rgba(244,143,177,0.6);
-      border-radius: 50px;
-      background: rgba(255,255,255,0.8);
-      font-size: 0.82rem;
-      color: #a0356d;
-      outline: none;
-      font-family: 'Lato', sans-serif;
+      flex:1; padding:12px 18px;
+      border:1.5px solid rgba(244,143,177,.6); border-radius:50px;
+      background:rgba(255,255,255,.8); font-size:.82rem; color:#a0356d;
+      outline:none; font-family:'Lato',sans-serif;
     }
-
-    .url-input:focus {
-      border-color: var(--pink-dark);
-      box-shadow: 0 0 0 3px rgba(233,30,140,0.10);
-    }
+    .url-input:focus { border-color:var(--pink-dark); box-shadow:0 0 0 3px rgba(233,30,140,.10); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(6px);
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,.78); z-index:1000;
+      align-items:center; justify-content:center;
+      backdrop-filter:blur(6px);
     }
-
-    .lightbox.active { display: flex; }
-
+    .lightbox.active { display:flex; }
     .lightbox-inner {
-      position: relative;
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      position:relative; max-width:92vw; max-height:92vh;
+      border-radius:18px; overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,.4);
     }
-
-    .lightbox-img {
-      max-width: 90vw;
-      max-height: 85vh;
-      object-fit: contain;
-      display: block;
+    .lightbox-img { max-width:92vw; max-height:85vh; object-fit:contain; display:block; }
+    .lightbox-nav {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,.88); border:none; border-radius:50%;
+      width:38px; height:38px; font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      color:#b5175e; transition:background .2s; z-index:5;
     }
-
+    .lightbox-nav:hover { background:#fff; }
+    .lightbox-prev { left:10px; }
+    .lightbox-next { right:10px; }
     .lightbox-close {
-      position: absolute;
-      top: 12px; right: 14px;
-      background: rgba(255,255,255,0.9);
-      border: none;
-      border-radius: 50%;
-      width: 36px; height: 36px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: #b5175e;
-      transition: background 0.2s;
+      position:absolute; top:10px; right:12px;
+      background:rgba(255,255,255,.9); border:none; border-radius:50%;
+      width:36px; height:36px; font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      color:#b5175e; transition:background .2s; z-index:6;
     }
+    .lightbox-close:hover { background:#fff; }
 
-    .lightbox-close:hover { background: white; }
+    /* ── MODAL (edit metadata + password) ── */
+    .modal-backdrop {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,.55); z-index:2000;
+      align-items:center; justify-content:center;
+      backdrop-filter:blur(4px); padding:20px;
+    }
+    .modal-backdrop.active { display:flex; }
+    .modal {
+      background:linear-gradient(145deg,#fff5f8,#fff);
+      border:1.5px solid rgba(244,143,177,.5);
+      border-radius:24px; padding:36px 32px;
+      width:100%; max-width:480px;
+      box-shadow:0 24px 64px rgba(233,30,140,.18);
+      position:relative; max-height:90vh; overflow-y:auto;
+    }
+    .modal h3 {
+      font-family:'Playfair Display',serif;
+      font-size:1.4rem; color:#b5175e;
+      margin-bottom:6px;
+    }
+    .modal-sub { font-size:.8rem; color:#c2698f; margin-bottom:24px; }
+
+    .form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:18px; }
+    .form-group label { font-size:.78rem; font-weight:700; color:#b5175e; letter-spacing:.5px; }
+    .form-group input,
+    .form-group textarea {
+      padding:11px 14px;
+      border:1.5px solid rgba(244,143,177,.5);
+      border-radius:12px;
+      background:rgba(255,255,255,.9);
+      font-size:.84rem; color:#7a2050;
+      font-family:'Lato',sans-serif;
+      outline:none; resize:vertical;
+      transition:border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color:var(--pink-dark); box-shadow:0 0 0 3px rgba(233,30,140,.10); }
+
+    /* Star picker in modal */
+    .star-picker { display:flex; gap:6px; align-items:center; margin-top:4px; }
+    .star-pick {
+      font-size:1.5rem; cursor:pointer;
+      color:#e0c0cc; transition:color .15s, transform .15s;
+      line-height:1;
+    }
+    .star-pick:hover,
+    .star-pick.selected { color:var(--gold); transform:scale(1.2); }
+    .star-count-label { font-size:.78rem; color:#c2698f; margin-left:6px; }
+
+    .modal-actions { display:flex; gap:12px; margin-top:6px; }
+    .btn-modal-save {
+      flex:1; padding:13px;
+      background:linear-gradient(135deg,#f48fb1,#e91e8c);
+      color:#fff; border:none; border-radius:50px;
+      font-size:.88rem; font-weight:700; cursor:pointer;
+      transition:opacity .2s, transform .2s;
+    }
+    .btn-modal-save:hover { opacity:.88; transform:translateY(-2px); }
+    .btn-modal-cancel {
+      flex:1; padding:13px;
+      background:rgba(244,143,177,.15);
+      color:#b5175e; border:1.5px solid rgba(244,143,177,.5);
+      border-radius:50px; font-size:.88rem; font-weight:700;
+      cursor:pointer; transition:background .2s;
+    }
+    .btn-modal-cancel:hover { background:rgba(244,143,177,.28); }
+
+    /* password modal */
+    .modal-lock-icon { font-size:2.5rem; text-align:center; margin-bottom:14px; }
+    .password-hint   { font-size:.72rem; color:#d47fa6; margin-top:6px; }
 
     /* ── TOAST ── */
     .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: linear-gradient(135deg, #e91e8c, #f48fb1);
-      color: white;
-      padding: 13px 28px;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      z-index: 9999;
-      opacity: 0;
-      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), opacity 0.3s;
-      box-shadow: 0 8px 24px rgba(233,30,140,0.35);
+      position:fixed; bottom:30px; left:50%;
+      transform:translateX(-50%) translateY(80px);
+      background:linear-gradient(135deg,#e91e8c,#f48fb1);
+      color:#fff; padding:13px 28px; border-radius:50px;
+      font-size:.88rem; font-weight:600; z-index:9999;
+      opacity:0; transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;
+      box-shadow:0 8px 24px rgba(233,30,140,.35);
+      white-space:nowrap;
     }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
     /* ── FOOTER ── */
     footer {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 30px 20px;
-      color: #d47fa6;
-      font-size: 0.78rem;
-      letter-spacing: 1px;
+      position:relative; z-index:10;
+      text-align:center; padding:30px 20px;
+      color:#d47fa6; font-size:.78rem; letter-spacing:1px;
     }
 
-    /* ── DECORATIVE PETALS ── */
+    /* ── FLOATING PETALS ── */
     .petal {
-      position: fixed;
-      pointer-events: none;
-      font-size: 1.4rem;
-      z-index: 1;
-      animation: floatPetal linear infinite;
-      opacity: 0.45;
+      position:fixed; pointer-events:none;
+      font-size:1.4rem; z-index:1;
+      animation:floatPetal linear infinite; opacity:.45;
     }
-
     @keyframes floatPetal {
-      0%   { transform: translateY(-40px) rotate(0deg);   opacity: 0; }
-      10%  { opacity: 0.45; }
-      90%  { opacity: 0.45; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+      0%   { transform:translateY(-40px) rotate(0deg);   opacity:0; }
+      10%  { opacity:.45; }
+      90%  { opacity:.45; }
+      100% { transform:translateY(110vh) rotate(360deg); opacity:0; }
     }
   </style>
 </head>
 <body>
 
-<!-- Confetti Canvas -->
 <canvas id="confetti-canvas"></canvas>
 
-<!-- Header -->
+<!-- HEADER -->
 <header>
   <div class="header-badge">✦ Photo Gallery ✦</div>
   <h1>Adik's <span>Gallery</span></h1>
@@ -444,344 +394,503 @@
   <div class="divider"></div>
 </header>
 
-<!-- Main -->
+<!-- MAIN -->
 <div class="container">
+  <div class="gallery-grid" id="galleryGrid"></div>
 
-  <!-- Gallery Grid -->
-  <div class="gallery-grid" id="galleryGrid">
-    <!-- Cards will be generated by JS -->
-  </div>
-
-  <!-- Share Section -->
+  <!-- SHARE -->
   <div class="share-section">
     <h2>🌸 Share This Gallery</h2>
     <p>Save & share these beautiful moments with everyone</p>
-
     <div class="share-buttons">
-      <button class="btn-share btn-copy" onclick="copyLink()">
-        🔗 Copy Link
-      </button>
-      <button class="btn-share btn-wa" onclick="shareWhatsApp()">
-        💬 WhatsApp
-      </button>
-      <button class="btn-share btn-ig" onclick="shareInstagram()">
-        📸 Instagram
-      </button>
-      <button class="btn-share btn-download" onclick="downloadPage()">
-        ⬇️ Download Page
-      </button>
+      <button class="btn-share btn-copy"     onclick="copyLink()">🔗 Copy Link</button>
+      <button class="btn-share btn-wa"       onclick="shareWhatsApp()">💬 WhatsApp</button>
+      <button class="btn-share btn-ig"       onclick="shareInstagram()">📸 Instagram</button>
+      <button class="btn-share btn-download" onclick="downloadPage()">⬇️ Download Page</button>
     </div>
-
     <div class="url-box">
-      <input class="url-input" id="pageUrl" type="text" readonly placeholder="Page URL…" />
-      <button class="btn-share btn-copy" style="padding:11px 20px;flex-shrink:0;font-size:0.8rem" onclick="copyLink()">Copy</button>
+      <input class="url-input" id="pageUrl" type="text" readonly placeholder="Page URL…"/>
+      <button class="btn-share btn-copy" style="padding:11px 20px;flex-shrink:0;font-size:.8rem" onclick="copyLink()">Copy</button>
     </div>
   </div>
-
 </div>
 
-<!-- Footer -->
-<footer>
-  🌸 Made with love — Adik's Gallery 🌸
-</footer>
+<footer>🌸 Made with love — Adik's Gallery 🌸</footer>
 
-<!-- Lightbox -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <div class="lightbox-inner" onclick="event.stopPropagation()">
-    <img class="lightbox-img" id="lightboxImg" src="" alt="Preview" />
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Preview"/>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(+1)">›</button>
     <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   </div>
 </div>
 
-<!-- Toast -->
+<!-- PASSWORD MODAL -->
+<div class="modal-backdrop" id="pwModal">
+  <div class="modal" style="max-width:360px">
+    <div class="modal-lock-icon">🔐</div>
+    <h3 style="text-align:center">Owner Access</h3>
+    <p class="modal-sub" style="text-align:center">Enter the password to edit this photo's details</p>
+    <div class="form-group">
+      <label>PASSWORD</label>
+      <input type="password" id="pwInput" placeholder="Enter password…" onkeydown="if(event.key==='Enter')checkPassword()"/>
+      <span class="password-hint" id="pwError"></span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal-save"   onclick="checkPassword()">Unlock ✨</button>
+      <button class="btn-modal-cancel" onclick="closePwModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT METADATA MODAL -->
+<div class="modal-backdrop" id="editModal">
+  <div class="modal">
+    <h3 id="editModalTitle">Edit Photo Details</h3>
+    <p class="modal-sub" id="editModalSub">Photo 1</p>
+
+    <div class="form-group">
+      <label>📅 DATE</label>
+      <input type="date" id="fieldDate"/>
+    </div>
+    <div class="form-group">
+      <label>📍 LOCATION / BACKGROUND</label>
+      <input type="text" id="fieldLocation" placeholder="e.g. Bali, Pantai Kuta"/>
+    </div>
+    <div class="form-group">
+      <label>📖 HISTORY — What did we do there?</label>
+      <textarea id="fieldHistory" rows="4" placeholder="Tell the story of this moment…"></textarea>
+    </div>
+    <div class="form-group">
+      <label>⭐ RATING (1 – 6 stars)</label>
+      <div class="star-picker" id="starPicker">
+        <span class="star-pick" data-v="1" onclick="pickStar(1)">★</span>
+        <span class="star-pick" data-v="2" onclick="pickStar(2)">★</span>
+        <span class="star-pick" data-v="3" onclick="pickStar(3)">★</span>
+        <span class="star-pick" data-v="4" onclick="pickStar(4)">★</span>
+        <span class="star-pick" data-v="5" onclick="pickStar(5)">★</span>
+        <span class="star-pick" data-v="6" onclick="pickStar(6)">★</span>
+        <span class="star-count-label" id="starLabel">No rating yet</span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-modal-save"   onclick="saveMeta()">Save 💾</button>
+      <button class="btn-modal-cancel" onclick="closeEditModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-  /* ─────────────────────────────────────────
-     GALLERY DATA — saved to localStorage
-  ───────────────────────────────────────── */
-  const TOTAL_SLOTS = 17;
-  let images = JSON.parse(localStorage.getItem('gallery_images') || '[]');
-  // Ensure array length = TOTAL_SLOTS
-  while (images.length < TOTAL_SLOTS) images.push(null);
-  images = images.slice(0, TOTAL_SLOTS);
+/* ═══════════════════════════════════════
+   CONFIG
+═══════════════════════════════════════ */
+const TOTAL_SLOTS = 17;
+const OWNER_PASSWORD = 'adik2024'; // ← ganti password sesuai keinginan
 
-  const LABELS = [
-    'Photo 1',  'Photo 2',  'Photo 3',  'Photo 4',  'Photo 5',
-    'Photo 6',  'Photo 7',  'Photo 8',  'Photo 9',  'Photo 10',
-    'Photo 11', 'Photo 12', 'Photo 13', 'Photo 14', 'Photo 15',
-    'Photo 16', 'Photo 17'
-  ];
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let images = JSON.parse(localStorage.getItem('gallery_images') || '[]');
+while (images.length < TOTAL_SLOTS) images.push(null);
+images = images.slice(0, TOTAL_SLOTS);
 
-  function saveImages() {
-    localStorage.setItem('gallery_images', JSON.stringify(images));
+// meta[i] = { date:'', location:'', history:'', stars:0 }
+let meta = JSON.parse(localStorage.getItem('gallery_meta') || '[]');
+while (meta.length < TOTAL_SLOTS) meta.push({ date:'', location:'', history:'', stars:0 });
+meta = meta.slice(0, TOTAL_SLOTS);
+
+function saveAll() {
+  localStorage.setItem('gallery_images', JSON.stringify(images));
+  localStorage.setItem('gallery_meta',   JSON.stringify(meta));
+}
+
+/* ═══════════════════════════════════════
+   RENDER
+═══════════════════════════════════════ */
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = '';
+
+  for (let i = 0; i < TOTAL_SLOTS; i++) {
+    const src = images[i];
+    const m   = meta[i];
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    /* ── PHOTO AREA ── */
+    const photoWrap = document.createElement('div');
+    photoWrap.className = 'card-photo';
+
+    // Number badge
+    const num = document.createElement('span');
+    num.className   = 'card-number';
+    num.textContent = i < 9 ? `0${i+1}` : `${i+1}`;
+    photoWrap.appendChild(num);
+
+    if (src) {
+      const img = document.createElement('img');
+      img.className = 'card-img';
+      img.src = src; img.alt = `Photo ${i+1}`;
+      photoWrap.appendChild(img);
+
+      const overlay = document.createElement('div');
+      overlay.className = 'card-overlay';
+      overlay.innerHTML = `
+        <div class="overlay-action">
+          <button class="btn-small btn-view"   onclick="openLightbox(${i})">🔍 View</button>
+          <button class="btn-small btn-remove" onclick="removeImage(${i})">🗑 Remove</button>
+        </div>`;
+      photoWrap.appendChild(overlay);
+      photoWrap.addEventListener('click', () => openLightbox(i));
+    } else {
+      const inp = document.createElement('input');
+      inp.type = 'file'; inp.accept = 'image/*';
+      inp.className = 'file-input'; inp.id = `file-${i}`;
+      inp.addEventListener('change', e => handleUpload(e, i));
+
+      const lbl = document.createElement('label');
+      lbl.htmlFor   = `file-${i}`;
+      lbl.className = 'upload-area';
+      lbl.innerHTML = `
+        <div class="upload-icon">🌸</div>
+        <div class="upload-label">Photo ${i+1}</div>
+        <div class="upload-sub">Click to choose a photo</div>`;
+
+      photoWrap.appendChild(inp);
+      photoWrap.appendChild(lbl);
+    }
+
+    card.appendChild(photoWrap);
+
+    /* ── METADATA PANEL ── */
+    const panel = document.createElement('div');
+    panel.className = 'card-meta';
+
+    // Date
+    const dateEl = document.createElement('div');
+    dateEl.className = 'meta-date' + (m.date ? '' : ' empty');
+    dateEl.textContent = m.date
+      ? formatDate(m.date)
+      : '📅 No date yet';
+    panel.appendChild(dateEl);
+
+    // Location
+    const locEl = document.createElement('div');
+    locEl.className = 'meta-location' + (m.location ? '' : ' empty');
+    locEl.textContent = m.location ? `📍 ${m.location}` : '📍 No location yet';
+    panel.appendChild(locEl);
+
+    // History
+    const histEl = document.createElement('div');
+    histEl.className = 'meta-history' + (m.history ? '' : ' empty');
+    histEl.textContent = m.history ? m.history : 'No story added yet…';
+    panel.appendChild(histEl);
+
+    // Stars
+    const starsEl = document.createElement('div');
+    starsEl.className = 'meta-stars';
+    for (let s = 1; s <= 6; s++) {
+      const star = document.createElement('span');
+      star.className = 'star' + (s <= m.stars ? ' filled' : '');
+      star.textContent = '★';
+      starsEl.appendChild(star);
+    }
+    panel.appendChild(starsEl);
+
+    // Edit button
+    const editBtn = document.createElement('button');
+    editBtn.className   = 'btn-edit-meta';
+    editBtn.textContent = '✏️ Edit Details';
+    editBtn.onclick = (e) => { e.stopPropagation(); openPwModal(i); };
+    panel.appendChild(editBtn);
+
+    card.appendChild(panel);
+    grid.appendChild(card);
   }
+}
 
-  function renderGallery() {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = '';
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+}
 
-    images.forEach((src, i) => {
-      const card = document.createElement('div');
-      card.className = 'card';
+/* ═══════════════════════════════════════
+   UPLOAD / REMOVE
+═══════════════════════════════════════ */
+function handleUpload(event, index) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    images[index] = e.target.result;
+    saveAll(); renderGallery();
+    showToast('🌸 Photo uploaded successfully!');
+  };
+  reader.readAsDataURL(file);
+}
 
-      const num = document.createElement('span');
-      num.className = 'card-number';
-      num.textContent = (i + 1) < 10 ? `0${i + 1}` : `${i + 1}`;
+function removeImage(index) {
+  images[index] = null;
+  saveAll(); renderGallery();
+  showToast('Photo removed.');
+}
 
-      if (src) {
-        // Image loaded
-        const img = document.createElement('img');
-        img.className = 'card-img';
-        img.src = src;
-        img.alt = LABELS[i];
+/* ═══════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════ */
+let currentLightbox = 0;
 
-        const overlay = document.createElement('div');
-        overlay.className = 'card-overlay';
-        overlay.innerHTML = `
-          <div class="overlay-action">
-            <button class="btn-small btn-view" onclick="openLightbox(${i})">🔍 View</button>
-            <button class="btn-small btn-remove" onclick="removeImage(${i})">🗑 Remove</button>
-          </div>`;
+function openLightbox(index) {
+  if (!images[index]) return;
+  currentLightbox = index;
+  document.getElementById('lightboxImg').src = images[index];
+  document.getElementById('lightbox').classList.add('active');
+}
 
-        card.appendChild(num);
-        card.appendChild(img);
-        card.appendChild(overlay);
-        card.addEventListener('click', () => openLightbox(i));
-      } else {
-        // Upload placeholder
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.className = 'file-input';
-        fileInput.id = `file-${i}`;
-        fileInput.addEventListener('change', (e) => handleUpload(e, i));
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
 
-        const uploadArea = document.createElement('label');
-        uploadArea.htmlFor = `file-${i}`;
-        uploadArea.className = 'upload-area';
-        uploadArea.innerHTML = `
-          <div class="upload-icon">🌸</div>
-          <div class="upload-label">${LABELS[i]}</div>
-          <div class="upload-sub">Click to choose a photo</div>`;
-
-        card.appendChild(num);
-        card.appendChild(fileInput);
-        card.appendChild(uploadArea);
-      }
-
-      grid.appendChild(card);
-    });
+function lightboxNav(dir) {
+  let next = currentLightbox + dir;
+  // skip empty slots
+  let tries = 0;
+  while (tries < TOTAL_SLOTS) {
+    if (next < 0) next = TOTAL_SLOTS - 1;
+    if (next >= TOTAL_SLOTS) next = 0;
+    if (images[next]) break;
+    next += dir; tries++;
   }
+  if (images[next]) openLightbox(next);
+}
 
-  function handleUpload(event, index) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      images[index] = e.target.result;
-      saveImages();
-      renderGallery();
-      showToast('🌸 Photo uploaded successfully!');
-    };
-    reader.readAsDataURL(file);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape')     { closeLightbox(); closePwModal(); closeEditModal(); }
+  if (e.key === 'ArrowRight') lightboxNav(+1);
+  if (e.key === 'ArrowLeft')  lightboxNav(-1);
+});
+
+/* ═══════════════════════════════════════
+   PASSWORD MODAL
+═══════════════════════════════════════ */
+let pendingEditIndex = -1;
+
+function openPwModal(index) {
+  pendingEditIndex = index;
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwError').textContent = '';
+  document.getElementById('pwModal').classList.add('active');
+  setTimeout(() => document.getElementById('pwInput').focus(), 100);
+}
+
+function closePwModal() {
+  document.getElementById('pwModal').classList.remove('active');
+  pendingEditIndex = -1;
+}
+
+function checkPassword() {
+  const val = document.getElementById('pwInput').value;
+  if (val === OWNER_PASSWORD) {
+    closePwModal();
+    openEditModal(pendingEditIndex);
+  } else {
+    document.getElementById('pwError').textContent = '❌ Wrong password. Try again.';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
   }
+}
 
-  function removeImage(index) {
-    images[index] = null;
-    saveImages();
-    renderGallery();
-    showToast('Photo removed.');
-  }
+/* ═══════════════════════════════════════
+   EDIT METADATA MODAL
+═══════════════════════════════════════ */
+let editingIndex = -1;
+let pickedStars  = 0;
 
-  /* ─────────────────────────────────────────
-     LIGHTBOX
-  ───────────────────────────────────────── */
-  function openLightbox(index) {
-    if (!images[index]) return;
-    document.getElementById('lightboxImg').src = images[index];
-    document.getElementById('lightbox').classList.add('active');
-  }
+function openEditModal(index) {
+  editingIndex = index;
+  const m = meta[index];
 
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-  }
+  document.getElementById('editModalTitle').textContent = `Edit Photo ${index+1} Details`;
+  document.getElementById('editModalSub').textContent   = `Photo ${index+1}`;
+  document.getElementById('fieldDate').value            = m.date     || '';
+  document.getElementById('fieldLocation').value        = m.location || '';
+  document.getElementById('fieldHistory').value         = m.history  || '';
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
+  pickedStars = m.stars || 0;
+  renderStarPicker();
+
+  document.getElementById('editModal').classList.add('active');
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('active');
+  editingIndex = -1;
+}
+
+function pickStar(n) {
+  pickedStars = n;
+  renderStarPicker();
+}
+
+function renderStarPicker() {
+  document.querySelectorAll('.star-pick').forEach(el => {
+    const v = parseInt(el.dataset.v);
+    el.classList.toggle('selected', v <= pickedStars);
   });
+  const labels = ['No rating yet','★ 1 star','★★ 2 stars','★★★ 3 stars',
+                  '★★★★ 4 stars','★★★★★ 5 stars','★★★★★★ 6 stars'];
+  document.getElementById('starLabel').textContent = labels[pickedStars];
+}
 
-  /* ─────────────────────────────────────────
-     SHARE FUNCTIONS
-  ───────────────────────────────────────── */
-  function getPageUrl() {
-    return window.location.href;
-  }
-
-  document.getElementById('pageUrl').value = window.location.href;
-
-  function copyLink() {
-    const url = getPageUrl();
-    navigator.clipboard.writeText(url).then(() => {
-      showToast('🔗 Link copied!');
-    }).catch(() => {
-      // Fallback
-      const inp = document.getElementById('pageUrl');
-      inp.select();
-      document.execCommand('copy');
-      showToast('🔗 Link copied!');
-    });
-  }
-
-  function shareWhatsApp() {
-    const url = encodeURIComponent(getPageUrl());
-    const text = encodeURIComponent('🌸 Check out this elegant photo gallery! ');
-    window.open(`https://wa.me/?text=${text}${url}`, '_blank');
-  }
-
-  function shareInstagram() {
-    copyLink();
-    showToast('📸 Link copied — paste it in your Instagram bio or story!');
-  }
-
-  function downloadPage() {
-    const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'adiks-gallery.html';
-    a.click();
-    showToast('⬇️ Page downloaded successfully!');
-  }
-
-  /* ─────────────────────────────────────────
-     TOAST
-  ───────────────────────────────────────── */
-  let toastTimeout;
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => t.classList.remove('show'), 2800);
-  }
-
-  /* ─────────────────────────────────────────
-     CONFETTI
-  ───────────────────────────────────────── */
-  (function () {
-    const canvas = document.getElementById('confetti-canvas');
-    const ctx = canvas.getContext('2d');
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    const COLORS = [
-      '#f48fb1','#e91e8c','#f06292','#fce4ec',
-      '#c2698f','#ffd6e7','#fff0f6','#e040fb',
-      '#f8bbd0','#c9a96e'
-    ];
-
-    const SHAPES = ['circle', 'rect', 'triangle', 'heart'];
-
-    class Particle {
-      constructor() { this.reset(true); }
-
-      reset(init = false) {
-        this.x      = Math.random() * canvas.width;
-        this.y      = init ? Math.random() * canvas.height : -20;
-        this.size   = Math.random() * 9 + 4;
-        this.color  = COLORS[Math.floor(Math.random() * COLORS.length)];
-        this.speed  = Math.random() * 1.2 + 0.5;
-        this.vx     = (Math.random() - 0.5) * 1.2;
-        this.angle  = Math.random() * Math.PI * 2;
-        this.spin   = (Math.random() - 0.5) * 0.10;
-        this.alpha  = Math.random() * 0.5 + 0.5;
-        this.shape  = SHAPES[Math.floor(Math.random() * SHAPES.length)];
-        this.wobble = Math.random() * Math.PI * 2;
-      }
-
-      update() {
-        this.y      += this.speed;
-        this.x      += this.vx + Math.sin(this.wobble) * 0.6;
-        this.angle  += this.spin;
-        this.wobble += 0.04;
-        if (this.y > canvas.height + 30) this.reset();
-      }
-
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle   = this.color;
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-
-        if (this.shape === 'circle') {
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-          ctx.fill();
-
-        } else if (this.shape === 'rect') {
-          ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
-
-        } else if (this.shape === 'triangle') {
-          const s = this.size;
-          ctx.beginPath();
-          ctx.moveTo(0, -s / 2);
-          ctx.lineTo(s / 2, s / 2);
-          ctx.lineTo(-s / 2, s / 2);
-          ctx.closePath();
-          ctx.fill();
-
-        } else if (this.shape === 'heart') {
-          const s = this.size * 0.6;
-          ctx.beginPath();
-          ctx.moveTo(0, s * 0.35);
-          ctx.bezierCurveTo( s,  -s * 0.3,  s * 1.6,  s * 0.7,  0,  s * 1.4);
-          ctx.bezierCurveTo(-s * 1.6,  s * 0.7, -s,  -s * 0.3,  0,  s * 0.35);
-          ctx.fill();
-        }
-
-        ctx.restore();
-      }
-    }
-
-    const COUNT = 90;
-    const particles = Array.from({ length: COUNT }, () => new Particle());
-
-    function loop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(loop);
-    }
-    loop();
-  })();
-
-  /* ─────────────────────────────────────────
-     FLOATING PETALS (emoji)
-  ───────────────────────────────────────── */
-  (function () {
-    const emojis = ['🌸','🌷','💗','🌺','💕','✨','🎀'];
-    for (let i = 0; i < 12; i++) {
-      const el = document.createElement('div');
-      el.className = 'petal';
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      el.style.left  = `${Math.random() * 100}vw`;
-      el.style.top   = `${Math.random() * 100}vh`;
-      el.style.fontSize = `${Math.random() * 1.2 + 0.8}rem`;
-      el.style.animationDuration = `${Math.random() * 12 + 8}s`;
-      el.style.animationDelay   = `${Math.random() * 8}s`;
-      document.body.appendChild(el);
-    }
-  })();
-
-  /* ─────────────────────────────────────────
-     INIT
-  ───────────────────────────────────────── */
+function saveMeta() {
+  if (editingIndex < 0) return;
+  meta[editingIndex] = {
+    date:     document.getElementById('fieldDate').value,
+    location: document.getElementById('fieldLocation').value.trim(),
+    history:  document.getElementById('fieldHistory').value.trim(),
+    stars:    pickedStars
+  };
+  saveAll();
+  closeEditModal();
   renderGallery();
+  showToast('✨ Details saved!');
+}
+
+/* ═══════════════════════════════════════
+   SHARE
+═══════════════════════════════════════ */
+document.getElementById('pageUrl').value = window.location.href;
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast('🔗 Link copied!');
+  }).catch(() => {
+    document.getElementById('pageUrl').select();
+    document.execCommand('copy');
+    showToast('🔗 Link copied!');
+  });
+}
+
+function shareWhatsApp() {
+  const url  = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent("🌸 Check out Adik's Gallery! ");
+  window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+}
+
+function shareInstagram() {
+  copyLink();
+  showToast('📸 Link copied — paste it in your Instagram bio or story!');
+}
+
+function downloadPage() {
+  const blob = new Blob([document.documentElement.outerHTML], { type:'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'adiks-gallery.html';
+  a.click();
+  showToast('⬇️ Page downloaded successfully!');
+}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ═══════════════════════════════════════
+   CONFETTI
+═══════════════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx    = canvas.getContext('2d');
+  function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+
+  const COLORS = ['#f48fb1','#e91e8c','#f06292','#fce4ec',
+                  '#c2698f','#ffd6e7','#fff0f6','#e040fb','#f8bbd0','#c9a96e'];
+  const SHAPES = ['circle','rect','triangle','heart'];
+
+  class P {
+    constructor(){ this.reset(true); }
+    reset(init=false){
+      this.x=Math.random()*canvas.width;
+      this.y=init?Math.random()*canvas.height:-20;
+      this.size=Math.random()*9+4;
+      this.color=COLORS[Math.random()*COLORS.length|0];
+      this.speed=Math.random()*1.2+0.5;
+      this.vx=(Math.random()-.5)*1.2;
+      this.angle=Math.random()*Math.PI*2;
+      this.spin=(Math.random()-.5)*.10;
+      this.alpha=Math.random()*.5+.5;
+      this.shape=SHAPES[Math.random()*SHAPES.length|0];
+      this.wobble=Math.random()*Math.PI*2;
+    }
+    update(){
+      this.y+=this.speed; this.x+=this.vx+Math.sin(this.wobble)*.6;
+      this.angle+=this.spin; this.wobble+=.04;
+      if(this.y>canvas.height+30) this.reset();
+    }
+    draw(){
+      ctx.save(); ctx.globalAlpha=this.alpha; ctx.fillStyle=this.color;
+      ctx.translate(this.x,this.y); ctx.rotate(this.angle);
+      if(this.shape==='circle'){
+        ctx.beginPath(); ctx.arc(0,0,this.size/2,0,Math.PI*2); ctx.fill();
+      } else if(this.shape==='rect'){
+        ctx.fillRect(-this.size/2,-this.size/4,this.size,this.size/2);
+      } else if(this.shape==='triangle'){
+        const s=this.size;
+        ctx.beginPath(); ctx.moveTo(0,-s/2); ctx.lineTo(s/2,s/2); ctx.lineTo(-s/2,s/2); ctx.closePath(); ctx.fill();
+      } else {
+        const s=this.size*.6;
+        ctx.beginPath(); ctx.moveTo(0,s*.35);
+        ctx.bezierCurveTo(s,-s*.3,s*1.6,s*.7,0,s*1.4);
+        ctx.bezierCurveTo(-s*1.6,s*.7,-s,-s*.3,0,s*.35);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
+  const particles = Array.from({length:90},()=>new P());
+  (function loop(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(loop); })();
+})();
+
+/* ═══════════════════════════════════════
+   FLOATING PETALS
+═══════════════════════════════════════ */
+(function(){
+  const emojis=['🌸','🌷','💗','🌺','💕','✨','🎀'];
+  for(let i=0;i<12;i++){
+    const el=document.createElement('div');
+    el.className='petal';
+    el.textContent=emojis[Math.random()*emojis.length|0];
+    el.style.left=`${Math.random()*100}vw`;
+    el.style.top=`${Math.random()*100}vh`;
+    el.style.fontSize=`${Math.random()*1.2+.8}rem`;
+    el.style.animationDuration=`${Math.random()*12+8}s`;
+    el.style.animationDelay=`${Math.random()*8}s`;
+    document.body.appendChild(el);
+  }
+})();
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+renderGallery();
 </script>
 </body>
 </html>
