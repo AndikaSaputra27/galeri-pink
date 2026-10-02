@@ -428,26 +428,26 @@
 </div>
 
 <!-- PASSWORD MODAL -->
-<div class="modal-backdrop" id="pwModal" onclick="event.stopPropagation()">
-  <div class="modal" style="max-width:360px" onclick="event.stopPropagation()">
+<div class="modal-backdrop" id="pwModal">
+  <div class="modal" id="pwModalBox" style="max-width:360px">
     <div class="modal-lock-icon">🔐</div>
     <h3 style="text-align:center">Owner Access</h3>
     <p class="modal-sub" style="text-align:center">Enter the password to edit this photo's details</p>
     <div class="form-group">
       <label>PASSWORD</label>
-      <input type="password" id="pwInput" placeholder="Enter password…" onkeydown="if(event.key==='Enter'){event.preventDefault();checkPassword()}" onclick="event.stopPropagation()"/>
+      <input type="password" id="pwInput" placeholder="Enter password…"/>
       <span class="password-hint" id="pwError"></span>
     </div>
     <div class="modal-actions">
-      <button class="btn-modal-save"   onclick="event.stopPropagation();checkPassword()">Unlock ✨</button>
-      <button class="btn-modal-cancel" onclick="event.stopPropagation();closePwModal()">Cancel</button>
+      <button class="btn-modal-save"   id="btnUnlock">Unlock ✨</button>
+      <button class="btn-modal-cancel" id="btnPwCancel">Cancel</button>
     </div>
   </div>
 </div>
 
 <!-- EDIT METADATA MODAL -->
-<div class="modal-backdrop" id="editModal" onclick="event.stopPropagation()">
-  <div class="modal" onclick="event.stopPropagation()">
+<div class="modal-backdrop" id="editModal">
+  <div class="modal" id="editModalBox">
     <h3 id="editModalTitle">Edit Photo Details</h3>
     <p class="modal-sub" id="editModalSub">Photo 1</p>
 
@@ -466,19 +466,19 @@
     <div class="form-group">
       <label>⭐ RATING (1 – 6 stars)</label>
       <div class="star-picker" id="starPicker">
-        <span class="star-pick" data-v="1" onclick="pickStar(1)">★</span>
-        <span class="star-pick" data-v="2" onclick="pickStar(2)">★</span>
-        <span class="star-pick" data-v="3" onclick="pickStar(3)">★</span>
-        <span class="star-pick" data-v="4" onclick="pickStar(4)">★</span>
-        <span class="star-pick" data-v="5" onclick="pickStar(5)">★</span>
-        <span class="star-pick" data-v="6" onclick="pickStar(6)">★</span>
+        <span class="star-pick" data-v="1">★</span>
+        <span class="star-pick" data-v="2">★</span>
+        <span class="star-pick" data-v="3">★</span>
+        <span class="star-pick" data-v="4">★</span>
+        <span class="star-pick" data-v="5">★</span>
+        <span class="star-pick" data-v="6">★</span>
         <span class="star-count-label" id="starLabel">No rating yet</span>
       </div>
     </div>
 
     <div class="modal-actions">
-      <button class="btn-modal-save"   onclick="event.stopPropagation();saveMeta()">Save 💾</button>
-      <button class="btn-modal-cancel" onclick="event.stopPropagation();closeEditModal()">Cancel</button>
+      <button class="btn-modal-save"   id="btnSaveMeta">Save 💾</button>
+      <button class="btn-modal-cancel" id="btnEditCancel">Cancel</button>
     </div>
   </div>
 </div>
@@ -683,24 +683,49 @@ document.addEventListener('keydown', e => {
 ═══════════════════════════════════════ */
 let pendingEditIndex = -1;
 
+// Close modal only when clicking the dark backdrop (not the modal box itself)
+document.getElementById('pwModal').addEventListener('click', function(e) {
+  if (e.target === this) closePwModal();
+});
+document.getElementById('editModal').addEventListener('click', function(e) {
+  if (e.target === this) closeEditModal();
+});
+
+// Wire up buttons via JS (no inline onclick)
+document.getElementById('btnUnlock').addEventListener('click', checkPassword);
+document.getElementById('btnPwCancel').addEventListener('click', closePwModal);
+document.getElementById('btnSaveMeta').addEventListener('click', saveMeta);
+document.getElementById('btnEditCancel').addEventListener('click', closeEditModal);
+document.getElementById('pwInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); checkPassword(); }
+});
+
+// Star picker via JS
+document.querySelectorAll('.star-pick').forEach(el => {
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    pickStar(parseInt(this.dataset.v));
+  });
+});
+
 function openPwModal(index) {
   pendingEditIndex = index;
   document.getElementById('pwInput').value = '';
   document.getElementById('pwError').textContent = '';
   document.getElementById('pwModal').classList.add('active');
-  setTimeout(() => document.getElementById('pwInput').focus(), 100);
+  setTimeout(() => document.getElementById('pwInput').focus(), 150);
 }
 
 function closePwModal() {
   document.getElementById('pwModal').classList.remove('active');
-  pendingEditIndex = -1;
 }
 
 function checkPassword() {
   const val = document.getElementById('pwInput').value.trim();
   if (val === OWNER_PASSWORD) {
-    closePwModal();
-    openEditModal(pendingEditIndex);
+    document.getElementById('pwModal').classList.remove('active');
+    // small delay so first modal fully hides before second opens
+    setTimeout(() => openEditModal(pendingEditIndex), 120);
   } else {
     document.getElementById('pwError').textContent = '❌ Wrong password. Try again.';
     document.getElementById('pwInput').value = '';
